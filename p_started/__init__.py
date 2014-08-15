@@ -16,10 +16,9 @@ def main(global_config, **settings):
     if production:
         config.add_static_view('static', 'static', cache_max_age=3600)
     else:
-        config.add_static_view('static', 'static', cache_max_age=3600)
-        config.add_static_view('scripts', 'webapp/app/scripts', cache_max_age=3600)
-        config.add_static_view('styles', 'webapp/app/styles', cache_max_age=3600)
-        config.add_static_view('images', 'p_started:webapp/app/images', cache_max_age=3600)
+        config.add_static_view('scripts', 'p_started:webapp/app/scripts', cache_max_age=3600)
+        config.add_static_view('styles', 'p_started:webapp/app/styles', cache_max_age=3600)
+        config.add_static_view('images', 'p_started:webapp/app/images', cache_max_age=3601)
     config.add_route('home', '/')
     config.scan()
     return config.make_wsgi_app()
