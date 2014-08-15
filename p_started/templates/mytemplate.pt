@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="pyramid web application">
     <meta name="author" content="Pylons Project">
-    <link rel="shortcut icon" href="${request.static_url('p_started:static/pyramid-16x16.png')}">
+    <link rel="shortcut icon" href="${request.static_url('p_started:images/pyramid-16x16.png')}">
 
     <title>Starter Scaffold for The Pyramid Web Framework</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="//oss.maxcdn.com/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${request.static_url('p_started:styles/vendor.css')}" rel="stylesheet">
 
     <!-- Custom styles for this scaffold -->
-    <link href="${request.static_url('p_started:static/theme.css')}" rel="stylesheet">
+    <link href="${request.static_url('p_started:styles/styles.css')}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -29,7 +29,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-2">
-            <img class="logo img-responsive" src="${request.static_url('p_started:static/pyramid.png')}" alt="pyramid web framework">
+            <img class="logo img-responsive" src="${request.static_url('p_started:images/pyramid.png')}" alt="pyramid web framework">
           </div>
           <div class="col-md-10">
             <div class="content">
@@ -60,7 +60,18 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="//oss.maxcdn.com/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="//oss.maxcdn.com/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="${request.static_url('p_started:scripts/vendor.js')}"></script>
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        e.src='//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+
+    <script src="${request.static_url('p_started:scripts/plugins.js')}"></script>
+    <script src="${request.static_url('p_started:scripts/main.js')}"></script>
   </body>
 </html>

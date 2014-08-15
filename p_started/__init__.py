@@ -7,7 +7,8 @@ def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
     config = Configurator(settings=settings)
-    import pdb; pdb.set_trace()
+
+    # TODO: change PRODUCTION with something of more specific
     production_config = asbool(settings.get('PRODUCTION', 'false'))
     production = os.environ.get('PRODUCTION', production_config)
     config.include('pyramid_chameleon')
@@ -18,7 +19,7 @@ def main(global_config, **settings):
         config.add_static_view('static', 'static', cache_max_age=3600)
         config.add_static_view('scripts', 'webapp/app/scripts', cache_max_age=3600)
         config.add_static_view('styles', 'webapp/app/styles', cache_max_age=3600)
-        config.add_static_view('images', 'webapp/app/images', cache_max_age=3600)
+        config.add_static_view('images', 'p_started:webapp/app/images', cache_max_age=3600)
     config.add_route('home', '/')
     config.scan()
     return config.make_wsgi_app()
