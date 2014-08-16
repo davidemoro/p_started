@@ -1,6 +1,7 @@
 import os
 from pyramid.config import Configurator
 from pyramid.settings import asbool
+from pyramid_chameleon import zpt
 
 
 def main(global_config, **settings):
@@ -8,17 +9,25 @@ def main(global_config, **settings):
     """
     config = Configurator(settings=settings)
 
+    # add html renderer (chameleon)
+    config.add_renderer('.html', zpt.renderer_factory)
+
     # TODO: change PRODUCTION with something of more specific
     production_config = asbool(settings.get('PRODUCTION', 'false'))
+    production_config = asbool(settings.get('PRODUCTION', 'false'))
     production = os.environ.get('PRODUCTION', production_config)
+    minify_config = settings.get('minify', 'app')
+    minify = os.environ.get('minify', minify_config)
     config.include('pyramid_chameleon')
 
-    if production:
-        config.add_static_view('static', 'static', cache_max_age=3600)
-    else:
-        config.add_static_view('scripts', 'p_started:webapp/app/scripts', cache_max_age=3600)
-        config.add_static_view('styles', 'p_started:webapp/app/styles', cache_max_age=3600)
-        config.add_static_view('images', 'p_started:webapp/app/images', cache_max_age=3601)
+    # static views
+    config.add_static_view('scripts', 'p_started:webapp/%s/scripts' % minify, cache_max_age=3600)
+    config.add_static_view('styles', 'p_started:webapp/%s/styles' % minify, cache_max_age=3600)
+    config.add_static_view('images', 'p_started:webapp/%s/images' % minify, cache_max_age=3600)
+    if not production:
+        # we expose the bower_components dir just for development deployments, not good for production
+        config.add_static_view('bower_components', 'p_started:webapp/%s/bower_components' % minify, cache_max_age=3600)
+
     config.add_route('home', '/')
     config.scan()
     return config.make_wsgi_app()
