@@ -21,6 +21,7 @@ def main(global_config, **settings):
     config.include('pyramid_chameleon')
 
     # static views
+    # See also config.override_asset if you want to avoid minify
     config.add_static_view('scripts', 'p_started:webapp/%s/scripts' % minify, cache_max_age=3600)
     config.add_static_view('styles', 'p_started:webapp/%s/styles' % minify, cache_max_age=3600)
     config.add_static_view('images', 'p_started:webapp/%s/images' % minify, cache_max_age=3600)
