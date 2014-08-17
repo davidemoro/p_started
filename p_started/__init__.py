@@ -3,6 +3,7 @@ from pyramid.config import Configurator
 from pyramid.settings import asbool
 from pyramid_chameleon import zpt
 
+from p_started.views import my_view
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
@@ -29,6 +30,12 @@ def main(global_config, **settings):
         # we expose the bower_components dir just for development deployments, not good for production
         config.add_static_view('bower_components', 'p_started:webapp/%s/bower_components' % minify, cache_max_age=3600)
 
+    # routes
     config.add_route('home', '/')
-    config.scan()
+
+    # views
+    # dangerous experiment: chameleon template minificated in production mode. Not safe, do not use in production, it's just a joke :)
+    # use config.scan instead and uncomment view_config on views.py
+    config.add_view(my_view, route_name='home', renderer='webapp/%s/index.html' % minify)
+    # config.scan()
     return config.make_wsgi_app()
