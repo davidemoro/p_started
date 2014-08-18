@@ -33,7 +33,7 @@
         <!-- endbower -->
         <!-- endbuild -->
 
-        <!-- App css-->
+        <!-- App css (your theme) -->
         <tal:production tal:condition="production">
             <link href="${request.static_url('p_started:webapp/%s/styles/app.css' % minify)}" rel="stylesheet">
         </tal:production>
@@ -48,10 +48,6 @@
         <!-- endbuild -->
     </head>
     <body>
-        <!--[if lt IE 10]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
         <div class="starter-template">
           <div class="container">
             <div class="row">
@@ -112,7 +108,7 @@
         </script>
         -->
 
-        <!-- Plugins js-->
+        <!-- Plugins js -->
         <tal:production tal:condition="production">
             <script src="${request.static_url('p_started:webapp/%s/scripts/plugins.js' % minify)}"></script>
         </tal:production>
@@ -148,7 +144,7 @@
         </tal:comment>
         <!-- endbuild -->
 
-        <!-- App js -->
+        <!-- App js (your specific js) -->
         <tal:production tal:condition="production">
             <script src="${request.static_url('p_started:webapp/%s/scripts/app.js' % minify)}"></script>
         </tal:production>
