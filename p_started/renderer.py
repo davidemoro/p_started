@@ -36,8 +36,10 @@ class AppDistRendererFactory:
         the return value of a view.  The system value is a
         dictionary containing available system values
         (e.g. view, context, and request). """
-        minify = self.info.registry.settings.get('minify')
-        self.info.name = self.info.name % minify
-        system['renderer_name'] = self.info.renderer
+
+        if '%s' in self.info.name:
+            minify = self.info.registry.settings.get('minify')
+            self.info.name = self.info.name % minify
+            system['renderer_name'] = self.info.renderer
 
         return zpt.renderer_factory(self.info)(value, system)
