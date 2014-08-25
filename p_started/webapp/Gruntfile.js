@@ -270,6 +270,13 @@ module.exports = function (grunt) {
         //     dist: {}
         // },
 
+        // Replace Google CDN references
+        cdnify: {
+              dist: {
+                  html: ['<%= config.dist %>/*.html']
+              }
+        },
+    
         // Copies remaining files to places other tasks can use
         copy: {
             dist: {
@@ -362,6 +369,7 @@ module.exports = function (grunt) {
         'cssmin',
         'uglify',
         'copy:dist',
+        'cdnify',
 //        'rev',
         'usemin',
         'htmlmin'

@@ -81,19 +81,13 @@
 
         <!-- Vendor js -->
         <tal:production tal:condition="production">
-            <script src="${request.static_url('p_started:webapp/%s/scripts/vendor.js' % minify)}"></script>
+<!-- cdnify -->
+            <script src="./bower_components/jquery/dist/jquery.js"></script>
+<!-- endcdnify -->
         </tal:production>
         <tal:not_production tal:condition="not:production">
             <script src="${request.static_url('p_started:webapp/%s/bower_components/jquery/dist/jquery.js' % minify)}"></script>
         </tal:not_production>
-        <!-- build:js scripts/vendor.js -->
-        <!-- bower:js -->
-        <tal:comment replace="nothing">
-            <!-- DO NOT REMOVE this block (minifier) -->
-            <script src="./bower_components/jquery/dist/jquery.js"></script>
-        </tal:comment>
-        <!-- endbower -->
-        <!-- endbuild -->
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <!-- Uncomment if you need Google Analytics. -->
