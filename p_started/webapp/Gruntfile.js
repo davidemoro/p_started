@@ -18,6 +18,7 @@ module.exports = function (grunt) {
     // Configurable paths
     var config = {
         app: 'app',
+        tmp: '.tmp',
         dist: 'dist'
     };
 
@@ -276,6 +277,16 @@ module.exports = function (grunt) {
                   html: ['<%= config.dist %>/*.html']
               }
         },
+        uncss: {
+            dist: {
+                options: {
+                    stylesheets: ['../.tmp/concat/styles/vendor.css']
+                },
+                files: {
+                    '../.tmp/concat/styles/vendor.css': ['<%= config.app %>/index.html']
+                }
+            }
+        },
     
         // Copies remaining files to places other tasks can use
         copy: {
@@ -366,6 +377,7 @@ module.exports = function (grunt) {
         'concurrent:dist',
         'autoprefixer',
         'concat',
+        'uncss',
         'cssmin',
         'uglify',
         'copy:dist',
