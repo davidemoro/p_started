@@ -307,7 +307,7 @@ module.exports = function (grunt) {
                 }, {
                     expand: true,
                     dot: true,
-                    cwd: 'bower_components/bootstrap/dist',
+                    cwd: 'app/bower_components/bootstrap/dist',
                     src: ['fonts/*.*'],
                     dest: '<%= config.dist %>'
                 }]

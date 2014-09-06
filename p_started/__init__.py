@@ -27,6 +27,8 @@ def main(global_config, **settings):
     if not production:
         # we expose the bower_components dir just for development deployments, not good for production
         config.add_static_view('bower_components', 'p_started:webapp/%s/bower_components' % minify, cache_max_age=3600)
+    else:
+        config.add_static_view('fonts', 'p_started:webapp/%s/fonts' % minify, cache_max_age=3600)
 
     # routes
     config.add_route('home', '/')
