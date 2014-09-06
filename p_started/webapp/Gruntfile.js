@@ -188,6 +188,7 @@ module.exports = function (grunt) {
         // additional tasks can operate on them
         useminPrepare: {
             options: {
+                flow: { html: { steps: { js: ['concat', 'uglifyjs'], css: ['concat', 'cssmin'] }, post: {} } },
                 dest: '<%= config.dist %>'
             },
             html: '<%= config.app %>/index.html'
@@ -280,10 +281,11 @@ module.exports = function (grunt) {
         uncss: {
             dist: {
                 options: {
-                    stylesheets: ['../.tmp/concat/styles/vendor.css']
+                    csspath: '../.tmp',
+                    stylesheets: ['concat/styles/vendor.css']
                 },
                 files: {
-                    '../.tmp/concat/styles/vendor.css': ['<%= config.app %>/index.html']
+                    '.tmp/concat/styles/vendor.css': ['<%= config.app %>/index.html']
                 }
             }
         },
