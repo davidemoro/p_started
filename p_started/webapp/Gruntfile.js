@@ -188,7 +188,6 @@ module.exports = function (grunt) {
         // additional tasks can operate on them
         useminPrepare: {
             options: {
-                flow: { html: { steps: { js: ['concat', 'uglifyjs'], css: ['concat', 'cssmin'] }, post: {} } },
                 dest: '<%= config.dist %>'
             },
             html: '<%= config.app %>/index.html'
